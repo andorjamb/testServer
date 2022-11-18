@@ -1,71 +1,96 @@
-import React from "react";
-import { doc, setDoc  } from "firebase/firestore";
+import React, {Component }from "react";
+import { doc, setDoc,getDoc  } from "firebase/firestore";
 import { db } from "../firebaseconfig";
 
 
-const AddCitySight= ()=>{
+const googleIdInput = document.getElementById('googleIdInput');
+const cityNameInput= document.getElementById('cityNameInput');
+const sightNameInput= document.getElementById('sightNameInput');
+const imgUrlInput = document.getElementById('imgUrlInput');
+const ratingInput = document.getElementById('ratingInput'); 
 
-class Sight  { 
-  constructor(googleId,cityName,sightName,imgUrl, rating){
-  this.googleId = googleId;
-  this.cityName =cityName;
-  this.sightName = sightName;
-this.imgUrl =imgUrl;
-this.rating =rating;
-  }
-}
+class AddCitySight extends Component {
 
-/* const getSights = async () => {
-    const data = await getDocs(ref);
-    return data; 
-  }; */
+  state =
+  { cityName: "",
+    imgUrl: "",
+    rating: 0 ,
+    sightName: ""}
 
+ componentDidMount(){
+  //get form data and update state
+ this.setState({})
 
-const googleId = document.getElementById('googleId');
-const cityName= document.getElementById('cityName');
-const sightName= document.getElementById('sightName');
-const imgUrl = document.getElementById('imgUrl');
-const rating = document.getElementById('rating');
+ }
+
+ componentDidUpdate(){
+
+  //send data to firebase
+ }
+       
 
 
-const handleUpdate= async (e) => {
-    e.preventDefault();
-    let newSight = new Sight(googleId.value, cityName.value, sightName.value,
-     imgUrl.value, rating.value);
-   const sightRef = doc(db, 'sights', {googleId});
-setDoc(sightRef, {newSight}, { merge: true });
-  }
+     
+    render(){
 
-  return (
-  
-    <form id="sightsForm" onSubmit={handleUpdate} >
+     
+
+
+
+  return (<>
+    <form id="sightsForm" onSubmit={this.handleUpdate}>
         <h2>citySights Management Section</h2>
-          <label for="cityName">City name:</label>
-        <select name="cityName" id="cityName">
-            <option value="helsinki">helsinki</option>
-                <option value="turku">turku</option>
-                <option value="tampere">tampere</option>
-                <option value="oulu">oulu</option>
-                <option value="porvoo">porvoo</option>
-                <option value="pori">pori</option>
-              </select>
+          <label htmlFor="cityNameInput">City name:</label>
+      <input type="text" name="cityNameInput" id="cityNameInput" />
    
-   <label for="sightName">City Sight:</label>
-    <input type="text" name="sightName" id="sightName" />
+   <label htmlFor="sightNameInput">City Sight:</label>
+    <input type="text" name="sightNameInput" id="sightNameInput" />
 
-    <label for="rating">Rating:</label>
-    <input type="number" name="rating" id="rating" />
+    <label htmlFor="ratingInput">Rating:</label>
+    <input type="number" name="ratingInput" id="ratingInput" />
   
-  <label for="googleId">Google id:</label>
-    <input type="text" name="googleId" id="googleId" />    
+  <label htmlFor="googleIdInput">Google id:</label>
+    <input type="text" name="googleIdInput" id="googleIdInput" />    
  
-   <label for="imgUrl">Image url:</label>
-    <input type="text"name="imgUrl"id="imgUrl"/>
+   <label htmlFor="imgUrlInput">Image url:</label>
+    <input type="text"name="imgUrlInput"id="imgUrlInput" />
             
-<button type="submit">Save </button>
+<button type="submit" >Save </button>
     </form>
+    <div>
+      <h3>Submitted Values:</h3>
+      <p>CityName: {this.state.cityName}, imgUrl: {}, rating: {}, sightName{}
+      </p>
+    </div>
+    </>
 )
 
 }
+}
 
 export default AddCitySight;
+
+
+
+
+
+/* 
+class Sight  { 
+  constructor(cityName,imgUrl,rating,sightName){
+  this.cityName =cityName;
+  this.imgUrl =imgUrl;
+  this.rating =rating;
+  this.sightName = sightName;
+  }
+} */
+ 
+
+
+  //const newSight = new Sight(cityNameInput.value, imgUrlInput.value,ratingInput.value, sightNameInput.value);
+  //console.log(newSight);
+  //console.log(this.state);
+ // const google = googleIdInput.value;
+ //const sightRef = doc(db, 'sights', google);
+ //console.log(google);
+//setDoc(sightRef, {cityName: cityNameInput.value, imgUrl:imgUrlInput.value, rating: ratingInput.value, sightName: sightNameInput.value});)
+//  }

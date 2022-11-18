@@ -1,29 +1,66 @@
 
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import React, {Component} from 'react';
 import './App.css';
 import AddCitySight from './components/AddCitySight'
+import { doc, setDoc, getDoc, collection  } from "firebase/firestore";
+import { db } from "./firebaseconfig";
+
 
 //import axios from 'axios';
 
-const App = () => {
+
+const googleIdInput = document.getElementById('googleIdInput');
+const cityNameInput= document.getElementById('cityNameInput');
+const sightNameInput= document.getElementById('sightNameInput');
+const imgUrlInput = document.getElementById('imgUrlInput');
+const ratingInput = document.getElementById('ratingInput'); 
+
+
+
+
+
+class App extends Component {
+
+/* updateSights=(e)=>{
+  e.preventDefault();
+  this.setState({
+    sight: {...this.state.sight, [e.target.name]:e.target.value}
+  })
+  //console.log(cityNameInput.value, imgUrlInput.value,ratingInput.value, sightNameInput.value);
+  //const google = googleIdInput.value;
+  console.log(this.state.sight);
+ const sightRef = doc(db, 'sights', google);
+//setDoc(sightRef, newSight, { merge: true });
+} */
+
+
+
+
+render() {
+
+
+  const sightRef = doc(db, 'sights', 'ChIJ-1ZkcY4LkkYRsDmSuVO1AAo'); //Google place id for Suomenlinna
+  //setDoc(sightRef, newSight, { merge: true });
+  //const sightsRef = collection(db, 'sights'); 
+  const docSnap = getDoc(sightRef);
+  
+  setTimeout(1500, ()=>{console.log("Document data:", docSnap.data())})
+ 
+  
+
+
+
   return (
     <div className="App">
       <h1>Home Page</h1>
 <AddCitySight />
-     {/*  <Navbar />
-
-        <Routes>
-          <Route path="/" element={<HomeView />}>Home</Route>
-          <Route path="/page2" element={<Page2View />}>Page2</Route>
-        
-
-        </Routes> */}
+<h3>Testing:</h3>
+<p></p>
 
  
     </div>
   )
-}
+}}
 export default App;
 
 /* SANTOSH'S AXIOS EXAMPLE:
