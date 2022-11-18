@@ -1,15 +1,14 @@
 
 import React from 'react';
-import
 import {
     collection,
     get,
     getDocs,
     doc,
-} from "@firebase/firestore";
+} from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getFirestore } from "@firebase/firestore";
+import { getFirestore } from "firebase/firestore";
 
 
 const APIKey = process.env.REACT_APP_WEATHER_API_KEY;

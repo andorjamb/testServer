@@ -1,28 +1,26 @@
 
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { LoginContextProvider } from './components/Context.js';
 import './App.css';
-import HomeView from './views/HomeView';
-import Page2View from './views/Page2View.js';
-import SigninRedirect from './components/SigninRedirect.js';
-import Navbar from './components/Navbar';
-//import { isContext } from 'vm';
+import AddCitySight from './components/AddCitySight'
+
 //import axios from 'axios';
 
 const App = () => {
   return (
     <div className="App">
-      <Navbar />
-      <LoginContextProvider>
+      <h1>Home Page</h1>
+<AddCitySight />
+     {/*  <Navbar />
+
         <Routes>
           <Route path="/" element={<HomeView />}>Home</Route>
           <Route path="/page2" element={<Page2View />}>Page2</Route>
-          <Route path="/signin" element={<SigninRedirect />}>SigninRedirect</Route>
+        
 
-        </Routes>
+        </Routes> */}
 
-      </LoginContextProvider>
+ 
     </div>
   )
 }
