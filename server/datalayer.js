@@ -47,9 +47,9 @@ fetch('https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exchars=400
     .then((data) => console.log(data));
 
 
-export default {
+export {
     db, app, auth
-
-    //export functions that will be used by the client
 }
+    //export functions that will be used by the client
+
 
