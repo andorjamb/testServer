@@ -14,12 +14,18 @@ expressServer.use(cors({
   origin: '*'
 }));
 //expressServer.use(express.json());
-
+let result;
 
 expressServer.get('/help', (req, res) => {
   res = axios.get('https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/helsinki/next5days?key=8WZRHWN5ZRVL5C9375RBFJZFJ', { responseType: "json" })
-    .then((response) => console.log(response.data))
-    .then(res.end)
+    .then((response) => {
+      result = response.data;
+      console.log(result);
+
+    }
+
+    );
+  res.send();
 }
 );
 
